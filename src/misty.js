@@ -201,7 +201,7 @@ function ArrowUp({ transitions }) {
     return (
         <a href="#top">
             <div className={transitions}>
-                <span class="icon">
+                <span className="icon">
                     <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                         <path d="M256,200l-199,199a15,15 0 01-19,0l-29-29a15,15 0 01 0-19l235-236a16,16 0 01 24,0l235,236a15,15 0 01 0,19l-29,29a15,15 0 01-19,0z" />
                     </svg>
@@ -223,7 +223,7 @@ function NavBar({ transitions }) {
 
     return (
         <div className={`navbar ${transitions}`}>
-            <span class="navbar-logo">&#60; look sparkles! &#47;&#62;</span>
+            <span class="navbar-logo">&#60; &#47;&#62;</span>
             <ul>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#about">About</a></li>
@@ -348,7 +348,7 @@ function ContactArea(props) {
             <h1>Contact</h1>
             <p></p>
             <div className="contact">
-                <form>
+                <form data-netlify="true">
                     <input type="text" name="name" placeholder="Name" required />
                     <label className="label" htmlFor="name">Name</label>
                     <input type="email" name="email" placeholder="Email" required />
@@ -369,7 +369,7 @@ function Footer() {
 
     return (
         <div className="footer">
-            <img src="misty\public\MCClogo.png" alt="mistycan logo" />
+            <img src="./MCClogo.png" alt="mistycan logo" />
             <h3>{year}</h3>
         </div>
     )
@@ -404,7 +404,7 @@ function Site(props) {
     )
 }
 
-//////////App & Contexts//////////
+////////App & Contexts//////////
 function App() {
     return (
         <BackToTopState>
@@ -413,4 +413,6 @@ function App() {
     )
 }
 
-ReactDOM.render(<App />, document.getElementById("root"))
+// ReactDOM.render(<App />, document.getElementById("root"))
+
+export default App;

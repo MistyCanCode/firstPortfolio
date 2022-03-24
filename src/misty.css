@@ -265,7 +265,7 @@ html::-webkit-scrollbar-thumb {
   width: 25rem;
   background-position: center;
   background-size: cover;
-  background-image: url(https://assets.codepen.io/2255869/internal/avatars/users/default.png?fit=crop&format=auto&height=80&version=1534534955&width=80);
+  background-image: url(logo.png);
 }
 
 .header-photo-outline {
