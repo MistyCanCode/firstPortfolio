@@ -1,6 +1,6 @@
 import handleViewport from 'react-in-viewport';
 import React from 'react'
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'///
 import { useEffect, useContext, useReducer, createContext } from 'react'
 import { SiPostgresql, SiJquery } from 'react-icons/si'
 import { FaLinkedin, FaUserGraduate, FaJava, FaHtml5, FaGithub, FaRobot, FaGithubSquare, FaGraduationCap } from "react-icons/fa";
@@ -107,7 +107,7 @@ const OPEN_MOBILE = "OPEN_MOBILE"
 //////////Contexts//////////
 const BackToTopContext = createContext();
 //const SendContactFormContext = createContext();
-//const WindowWidthContext = createContext();
+const WindowWidthContext = createContext();
 
 //////////Reducer//////////
 const AppReducer = (state, action) => {
@@ -139,7 +139,42 @@ const AppReducer = (state, action) => {
 
 
 //////////State Components//////////
-
+function WindowWidthState(props){
+    const initialState = { 
+      isMobile: "init",
+      openMobile: false,
+    };
+    const [state, dispatch] = useReducer(AppReducer, initialState);
+    
+    const handleResize = (bool) => dispatch({type: WINDOW_WIDTH, payload: bool});
+    const openMobile = (bool) => dispatch({type: OPEN_MOBILE, payload: bool});
+    
+  //attaching an event listener is an anti pattern in react, I know that.
+  //However, unfortunately, there is no other way around to get the width or scroll movement
+     const checkWindowWidth = () => {
+         window.addEventListener('resize', () => {
+           if (window.innerWidth < 615){
+             handleResize(true)
+           } else if (window.innerWidth > 615){
+             handleResize(false)
+           }
+         });
+      }
+      
+      useEffect(()=>{
+        checkWindowWidth()
+      }, [state.isMobile])
+    
+    return (
+    <WindowWidthContext.Provider value={{
+          state,
+          openMobile
+        }}>
+      {props.children}
+    </WindowWidthContext.Provider>
+    )
+    
+  }
 
 function BackToTopState(props) {
     const initialState = { backToTop: false };
@@ -147,7 +182,7 @@ function BackToTopState(props) {
 
     const backToTop = (bool) => bool !== state.backToTop ? dispatch({ type: BACK_TO_TOP, payload: bool }) : null;
 
-    function checkScroll() {
+    const checkScroll= () => {
         window.addEventListener('scroll', () => {
             if (!state.backToTop && window.pageYOffset > 60) {
                 backToTop(true)
@@ -219,22 +254,75 @@ function ContentContainer(props) {
     )
 }
 
-function NavBar({ transitions }) {
+// function NavBar({ transitions }) {
 
-    return (
-        <div className={`navbar ${transitions}`}>
-            <span class="navbar-logo">&#60; &#47;&#62;</span>
-            <ul>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-            </ul>
+//     return (
+//         <div className={`navbar ${transitions}`}>
+//             <span class="navbar-logo">&#60; &#47;&#62;</span>
+//             <ul>
+//                 <li><a href="#contact">Contact</a></li>
+//                 <li><a href="#about">About</a></li>
+//                 <li><a href="#education">Education</a></li>
+//                 <li><a href="#projects">Projects</a></li>
+//                 <li><a href="#experience">Experience</a></li>
+//             </ul>
+//         </div>
+//     )
+
+// }
+
+function NavBar ({transitions, isMobile, openMobile, isMobileOpen}){
+  
+    if(isMobile && isMobile !== "init"){
+      return (
+       <>
+          <div onClick={() => openMobile(!isMobileOpen)} className="menu-icon">
+           {!isMobileOpen && iconSelector("menu")}
+           {isMobileOpen && iconSelector("close")}
+          </div>
+        
+        {isMobileOpen && (
+         <div className="mobile-menu" onClick={() => openMobile(!isMobileOpen)} >
+          <span className="mobile-menu"> &#60; &#47; &#62;</span>
+          <ul>
+            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#contact">Contact</a></li>
+            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#about">About</a></li>
+            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#education">Education</a></li>
+            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#projects">Projects</a></li>
+            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#experience">Experience</a></li>
+          </ul>
+            
         </div>
-    )
-
-}
+          )}
+       </>
+      )
+    }
+    
+    if(!isMobile && isMobile !== "init"){
+      return (
+      <div className={`navbar ${transitions}`}>
+        <span class="navbar-logo">&#60; &#47;&#62;</span>
+        <ul>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+        </ul>
+      </div>
+      )
+    }
+    
+   //this is necessary in order to avoid pre state assignment UI blink
+   if(isMobile === "init"){
+     return(
+     <>
+     </>
+     )
+   }
+  
+  
+  }
 
 
 function Card({ name, text, image, url, tech }) {
@@ -245,7 +333,7 @@ function Card({ name, text, image, url, tech }) {
                     <h2 className="card-title">{name}</h2>
                     <p>{text}</p>
                     <hr />
-                    <p>Access: <a href={url} target="_blank">{url}</a></p>
+                    <p>Access: <a href={url} target="_blank" rel="noreferrer">{url}</a></p>
                     <hr />
                     <p>{tech.map(item => iconSelector(item))}</p>
                 </div>
@@ -298,7 +386,7 @@ function EduCard({ name, url, inst, tech }) {
             <div className="edu-card-text">
                 <h2>{name}</h2>
                 <hr />
-                <p>{inst} {url && (<> <br /> <a href={url} target="_blank">check em out</a></>)}</p>
+                <p>{inst} {url && (<> <br /> <a href={url} target="_blank" rel="noreferrer">check em out</a></>)}</p>
             </div>
         </div>
     )
@@ -341,19 +429,28 @@ const ViewportAbout = handleViewport(About);
 
 function ContactArea(props) {
     const { inViewport, enterCount, innerRef } = props
+    this.state = { name: "", email: "", message: ""};
+  
+  const handleSubmit = (e) => {
+   
+    e.preventDefault()
 
+      handleChange = e => this.setState({[e.target.name]: e.target.value});
+      const {name, email, msg} = this.state;
+  }
 
     return (
         <div id="contact" className="section-default" style={getStyle(inViewport, enterCount)} ref={innerRef}>
             <h1>Contact</h1>
             <p></p>
-            <div className="contact">
-                <form data-netlify="true">
-                    <input type="text" name="name" placeholder="Name" required />
+            <div className="contact" onSubmit={handleSubmit}>
+                <form name="contact" method='post' data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+                    <input type="hidden" name="form-name" value="contact" />
+                    <input type="text" name="name" placeholder="Name" value={name} onChange={this.handleChange} required />
                     <label className="label" htmlFor="name">Name</label>
-                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="email" name="email" placeholder="Email" value={email} onChange={this.handleChange} required />
                     <label className="label" htmlFor="email">Email</label>
-                    <textarea name="msg" placeholder="Message"></textarea>
+                    <textarea name="msg" placeholder="Message" value={msg} onChange={this.handleChange}></textarea>
                     <label className="label-textarea" htmlFor="msg">Message</label>
                     <input type="submit" name="send" value="Send" />
                 </form>
@@ -361,7 +458,7 @@ function ContactArea(props) {
         </div>
     )
 }
-
+const ViewportContact = handleViewport(ContactArea);
 
 function Footer() {
 
@@ -369,7 +466,8 @@ function Footer() {
 
     return (
         <div className="footer">
-            <img src="./MCClogo.png" alt="mistycan logo" />
+            <div className="footer-photo"></div>
+            {/* <img src="./MCClogo.png" alt="mistycan logo" /> */}
             <h3>{year}</h3>
         </div>
     )
@@ -379,6 +477,10 @@ function Footer() {
 //////////Layout mounter//////////
 function Site(props) {
     const backToTopContext = useContext(BackToTopContext);
+    // const sendContactFormContext = useContext(SendContactFormContext);
+    const windowWidthContext = useContext(WindowWidthContext);
+    const {openMobile} = windowWidthContext;
+    // const {sendEmailInfos} = sendContactFormContext;
 
     return (
         <>
@@ -386,7 +488,8 @@ function Site(props) {
                 {state => (<ArrowUp transitions={`arrow-${state}`} />)}
             </Transition>
             <Transition in={backToTopContext.state.backToTop} timeout={200}>
-                {state => (<NavBar transitions={`navbar-${state}`} />)}
+                {state => (<NavBar transitions={`navbar-${state}`} 
+                isMobile={windowWidthContext.state.isMobile} openMobile={openMobile} isMobileOpen={windowWidthContext.state.openMobile}/>)}
             </Transition>
             <Social />
             <Header />
@@ -398,7 +501,10 @@ function Site(props) {
             <ViewportEducation />
             <About />
             <ViewportAbout />
+            <ViewportContact />
+            {/* {...sendContactFormContext.state} sendEmailInfos={sendEmailInfos} /> */}
             <ContactArea />
+            <ContentContainer />
             <Footer />
         </>
     )
@@ -408,7 +514,11 @@ function Site(props) {
 function App() {
     return (
         <BackToTopState>
+            {/* <SendContactFormState> */}
+            <WindowWidthState>
             <Site />
+            </WindowWidthState>  
+            {/* </SendContactFormState>  */}
         </BackToTopState>
     )
 }
