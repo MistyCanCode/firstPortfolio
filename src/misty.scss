@@ -87,7 +87,7 @@ html{
   font-family: 'Montserrat', sans-serif;
   font-size: 62.5%;
   scroll-behavior: smooth;
-  overflow: hidden;
+  overflow: visible;
   
   @media(max-width: $at-md){
     font-size: 50%;
@@ -101,6 +101,7 @@ html{
 html::-webkit-scrollbar {
   width: 1.3rem;
   background-color: $color-light-grey; 
+  overflow: visible;
 }
 
 html::-webkit-scrollbar-thumb {

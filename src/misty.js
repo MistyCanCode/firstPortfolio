@@ -314,6 +314,7 @@ function Projects({ inViewport, enterCount, innerRef }) {
                     return <Card key={index} {...client} />
                 })}
             </div>
+            <div className='cover-bar'></div>
         </div>
     )
 }
