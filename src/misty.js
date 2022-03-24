@@ -432,12 +432,18 @@ function ContactArea(props) {
     this.state = { name: "", email: "", message: ""};
   
   const handleSubmit = (e) => {
-   
+    fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...this.state })
+      })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
     e.preventDefault()
-
+    };
       handleChange = e => this.setState({[e.target.name]: e.target.value});
-      const {name, email, msg} = this.state;
-  }
+       const {name, email, msg} = this.state;
+  
 
     return (
         <div id="contact" className="section-default" style={getStyle(inViewport, enterCount)} ref={innerRef}>
