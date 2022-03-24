@@ -228,10 +228,10 @@ function Social() {
     )
 }
 
-function ArrowUp({ transitions }) {
+function ArrowUp() {
     return (
         <a href="#top">
-            <div className={transitions}>
+            <div className="arrow-entered">
                 <span className="icon">
                     <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                         <path d="M256,200l-199,199a15,15 0 01-19,0l-29-29a15,15 0 01 0-19l235-236a16,16 0 01 24,0l235,236a15,15 0 01 0,19l-29,29a15,15 0 01-19,0z" />
