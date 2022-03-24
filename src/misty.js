@@ -464,7 +464,7 @@ function ContactArea(props) {
                     <label className="label" htmlFor="name">Name</label>
                     <input type="email" name="email" placeholder="Email" required />
                     <label className="label" htmlFor="email">Email</label>
-                    <textarea name="msg" placeholder="Message" value={msg} ></textarea>
+                    <textarea name="msg" placeholder="Message" ></textarea>
                     <label className="label-textarea" htmlFor="msg">Message</label>
                     <input type="submit" name="send" value="Send" />
                 </form> 
