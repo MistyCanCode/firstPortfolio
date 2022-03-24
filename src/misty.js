@@ -1,13 +1,18 @@
-import handleViewport from 'react-in-viewport';
-import React from 'react'
-// import ReactDOM from 'react-dom'///
-import { useEffect, useContext, useReducer, createContext } from 'react'
-import { SiPostgresql, SiJquery } from 'react-icons/si'
-import { FaLinkedin, FaUserGraduate, FaJava, FaHtml5, FaGithub, FaRobot, FaGithubSquare, FaGraduationCap } from "react-icons/fa";
-import { IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen } from "react-icons/io5";
-import Transition from 'react-transition-group/Transition'
+// import handleViewport from 'react-in-viewport';
+// import React from 'react'
+// import ReactDOM from 'react-dom'
+// import { useEffect, useContext, useReducer, createContext } from 'react'
+// import { SiPostgresql, SiJquery } from 'react-icons/si'
+// import { FaLinkedin, FaUserGraduate, FaJava, FaHtml5, FaGithub, FaRobot, FaGithubSquare, FaGraduationCap } from "react-icons/fa";
+// import { IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen } from "react-icons/io5";
+// import Transition from 'react-transition-group/Transition'
 
-
+import handleViewport from "https://cdn.skypack.dev/react-in-viewport@0.0.37";
+import {SiPostgresql}from 'https://cdn.skypack.dev/react-icons/si';
+import {FaLinkedin, FaGithubSquare,FaRobot,FaGithub,FaJava,FaHtml5, FaUserGraduate} from "https://cdn.skypack.dev/react-icons/fa";
+import {IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen} from "https://cdn.skypack.dev/react-icons/io5";
+const {useEffect, useContext, useReducer, createContext} = React;
+const { Transition } = ReactTransitionGroup;
 
 
 
@@ -151,19 +156,19 @@ function WindowWidthState(props){
     
   //attaching an event listener is an anti pattern in react, I know that.
   //However, unfortunately, there is no other way around to get the width or scroll movement
-     const checkWindowWidth = () => {
-         window.addEventListener('resize', () => {
+    const checkWindowWidth = () => {
+        window.addEventListener('resize', () => {
            if (window.innerWidth < 615){
              handleResize(true)
            } else if (window.innerWidth > 615){
              handleResize(false)
            }
-         });
-      }
+        });
+    }
       
-      useEffect(()=>{
+    useEffect(()=>{
         checkWindowWidth()
-      }, [state.isMobile])
+    }, [state.isMobile])
     
     return (
     <WindowWidthContext.Provider value={{
@@ -225,9 +230,9 @@ function Header() {
 function Social() {
     return (
         <div className="social-icons">
-            <a href="https://www.linkedin.com/in/misty-tomlin/" target="_blank"><FaLinkedin /></a>
-            <a href="https://github.com/MistyCanCode" tagert="_blank"><FaGithubSquare /></a>
-            <a href="https://codepen.io/mistycancode" tagert="_blank"><IoLogoCodepen /></a>
+            <a href="https://www.linkedin.com/in/misty-tomlin/" target="_blank" rel="noreferrer"><FaLinkedin /></a>
+            <a href="https://github.com/MistyCanCode" tagert="_blank" rel="noreferrer"><FaGithubSquare /></a>
+            <a href="https://codepen.io/mistycancode" tagert="_blank" rel="noreferrer"><IoLogoCodepen /></a>
         </div>
     )
 }
@@ -297,7 +302,6 @@ function NavBar ({transitions, isMobile, openMobile, isMobileOpen}){
        </>
       )
     }
-    
     if(!isMobile && isMobile !== "init"){
       return (
       <div className={`navbar ${transitions}`}>
@@ -312,7 +316,6 @@ function NavBar ({transitions, isMobile, openMobile, isMobileOpen}){
       </div>
       )
     }
-    
    //this is necessary in order to avoid pre state assignment UI blink
    if(isMobile === "init"){
      return(
@@ -320,8 +323,6 @@ function NavBar ({transitions, isMobile, openMobile, isMobileOpen}){
      </>
      )
    }
-  
-  
   }
 
 
@@ -481,7 +482,6 @@ function Footer() {
     return (
         <div className="footer">
             <div className="footer-photo"></div>
-            {/* <img src="./MCClogo.png" alt="mistycan logo" /> */}
             <h3>{year}</h3>
         </div>
     )
@@ -491,10 +491,8 @@ function Footer() {
 //////////Layout mounter//////////
 function Site(props) {
     const backToTopContext = useContext(BackToTopContext);
-    // const sendContactFormContext = useContext(SendContactFormContext);
     const windowWidthContext = useContext(WindowWidthContext);
     const {openMobile} = windowWidthContext;
-    // const {sendEmailInfos} = sendContactFormContext;
 
     return (
         <>
@@ -516,7 +514,6 @@ function Site(props) {
             <About />
             <ViewportAbout />
             <ViewportContact />
-            {/* {...sendContactFormContext.state} sendEmailInfos={sendEmailInfos} /> */}
             <ContactArea />
             <ContentContainer />
             <Footer />
