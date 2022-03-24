@@ -509,6 +509,7 @@ function Site(props) {
                 <Education />
                 <ViewportAbout />
                 <About />
+                <ViewportContact />
                 <ContactArea />
             </ContentContainer>
             <ContentContainer>
@@ -516,6 +517,7 @@ function Site(props) {
                 <ViewportProjects />
                 <ViewportEducation />
                 <ViewportAbout />
+                <ViewportContact/>
             </ContentContainer>
             <Footer />
         </>
