@@ -1,20 +1,11 @@
-// import handleViewport from 'react-in-viewport';
-// import React from 'react'
+import handleViewport from 'react-in-viewport';
+import React from 'react'
 // import ReactDOM from 'react-dom'
-// import { useEffect, useContext, useReducer, createContext } from 'react'
-// import { SiPostgresql, SiJquery } from 'react-icons/si'
-// import { FaLinkedin, FaUserGraduate, FaJava, FaHtml5, FaGithub, FaRobot, FaGithubSquare, FaGraduationCap } from "react-icons/fa";
-// import { IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen } from "react-icons/io5";
-// import Transition from 'react-transition-group/Transition'
-
-import handleViewport from "https://cdn.skypack.dev/react-in-viewport@0.0.37";
-import {SiPostgresql}from 'https://cdn.skypack.dev/react-icons/si';
-import {FaLinkedin, FaGithubSquare,FaRobot,FaGithub,FaJava,FaHtml5, FaUserGraduate} from "https://cdn.skypack.dev/react-icons/fa";
-import {IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen} from "https://cdn.skypack.dev/react-icons/io5";
-const {useEffect, useContext, useReducer, createContext} = React;
-const { Transition } = ReactTransitionGroup;
-
-
+import { useEffect, useContext, useReducer, createContext } from 'react'
+import { SiPostgresql, SiJquery } from 'react-icons/si'
+import { FaLinkedin, FaUserGraduate, FaJava, FaHtml5, FaGithub, FaRobot, FaGithubSquare, FaGraduationCap } from "react-icons/fa";
+import { IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen } from "react-icons/io5";
+import Transition from 'react-transition-group/Transition'
 
 ///////Data///////
 const clients = [
