@@ -187,9 +187,9 @@ function BackToTopState(props) {
             }
         })
     }
-    // useEffect(() => {
-    //     checkScroll()
-    // }, [state.backToTop])
+    useEffect(() => {
+        checkScroll()
+    })
  
 
     return (
