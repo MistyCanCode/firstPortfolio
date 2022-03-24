@@ -1,11 +1,11 @@
 import handleViewport from 'react-in-viewport';
 import React from 'react'
 // import ReactDOM from 'react-dom'
-import { useEffect, useContext, useReducer, createContext } from 'react'
+import { useEffect, useReducer, createContext } from 'react'
 import { SiPostgresql, SiJquery } from 'react-icons/si'
 import { FaLinkedin, FaUserGraduate, FaJava, FaHtml5, FaGithub, FaRobot, FaGithubSquare, FaGraduationCap } from "react-icons/fa";
 import { IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen } from "react-icons/io5";
-import Transition from 'react-transition-group/Transition'
+
 
 ///////Data///////
 const clients = [
