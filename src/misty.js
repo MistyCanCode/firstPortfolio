@@ -429,37 +429,45 @@ const ViewportAbout = handleViewport(About);
 
 function ContactArea(props) {
     const { inViewport, enterCount, innerRef } = props
-    this.state = { name: "", email: "", message: ""};
+//     this.state = { name: "", email: "", message: ""};
   
-  const handleSubmit = (e) => {
-    fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact", ...this.state })
-      })
-        .then(() => alert("Success!"))
-        .catch(error => alert(error));
-    e.preventDefault()
-    };
-      handleChange = e => this.setState({[e.target.name]: e.target.value});
-       const {name, email, msg} = this.state;
-  
+//     const encode = (data) => {
+//         return Object.keys(data)
+//             .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+//             .join("&");
+//       }
+
+//   const handleSubmit = (e) => {
+//     fetch("/", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/x-www-form-urlencoded" },
+//         body: encode({ "form-name": "contact", ...this.state })
+//       })
+//         .then(() => alert("Success!"))
+//         .catch(error => alert(error));
+//     e.preventDefault()
+//     };
+//      const handleChange = e => {
+//          return this.setState({ [e.target.name]: e.target.value });
+//      };
+//        const {name, email, msg} = this.state;
+    
 
     return (
         <div id="contact" className="section-default" style={getStyle(inViewport, enterCount)} ref={innerRef}>
             <h1>Contact</h1>
             <p></p>
-            <div className="contact" onSubmit={handleSubmit}>
-                <form name="contact" method='post' data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+            <div>
+                <form name="contact" method='post' data-netlify="true" data-netlify-honeypot="bot-field" hidden>
                     <input type="hidden" name="form-name" value="contact" />
-                    <input type="text" name="name" placeholder="Name" value={name} onChange={this.handleChange} required />
+                    <input type="text" name="name" placeholder="Name" required />
                     <label className="label" htmlFor="name">Name</label>
-                    <input type="email" name="email" placeholder="Email" value={email} onChange={this.handleChange} required />
+                    <input type="email" name="email" placeholder="Email" required />
                     <label className="label" htmlFor="email">Email</label>
-                    <textarea name="msg" placeholder="Message" value={msg} onChange={this.handleChange}></textarea>
+                    <textarea name="msg" placeholder="Message" value={msg} ></textarea>
                     <label className="label-textarea" htmlFor="msg">Message</label>
                     <input type="submit" name="send" value="Send" />
-                </form>
+                </form> 
             </div>
         </div>
     )
