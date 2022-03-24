@@ -103,7 +103,7 @@ const OPEN_MOBILE = "OPEN_MOBILE"
 //////////Contexts//////////
 const BackToTopContext = createContext();
 //const SendContactFormContext = createContext();
-const WindowWidthContext = createContext();
+// const WindowWidthContext = createContext();
 
 //////////Reducer//////////
 const AppReducer = (state, action) => {
@@ -135,42 +135,42 @@ const AppReducer = (state, action) => {
 
 
 //////////State Components//////////
-function WindowWidthState(props){
-    const initialState = { 
-      isMobile: "init",
-      openMobile: false,
-    };
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+// function WindowWidthState(props){
+//     const initialState = { 
+//       isMobile: "init",
+//       openMobile: false,
+//     };
+//     const [state, dispatch] = useReducer(AppReducer, initialState);
     
-    const handleResize = (bool) => dispatch({type: WINDOW_WIDTH, payload: bool});
-    const openMobile = (bool) => dispatch({type: OPEN_MOBILE, payload: bool});
+//     const handleResize = (bool) => dispatch({type: WINDOW_WIDTH, payload: bool});
+//     const openMobile = (bool) => dispatch({type: OPEN_MOBILE, payload: bool});
     
-  //attaching an event listener is an anti pattern in react, I know that.
-  //However, unfortunately, there is no other way around to get the width or scroll movement
-    const checkWindowWidth = () => {
-        window.addEventListener('resize', () => {
-           if (window.innerWidth < 615){
-             handleResize(true)
-           } else if (window.innerWidth > 615){
-             handleResize(false)
-           }
-        });
-    }
+//   //attaching an event listener is an anti pattern in react, I know that.
+//   //However, unfortunately, there is no other way around to get the width or scroll movement
+//     const checkWindowWidth = () => {
+//         window.addEventListener('resize', () => {
+//            if (window.innerWidth < 615){
+//              handleResize(true)
+//            } else if (window.innerWidth > 615){
+//              handleResize(false)
+//            }
+//         });
+//     }
       
-    useEffect(()=>{
-        checkWindowWidth()
-    }, [state.isMobile])
+//     useEffect(()=>{
+//         checkWindowWidth()
+//     }, [state.isMobile])
     
-    return (
-    <WindowWidthContext.Provider value={{
-          state,
-          openMobile
-        }}>
-      {props.children}
-    </WindowWidthContext.Provider>
-    )
+//     return (
+//     <WindowWidthContext.Provider value={{
+//           state,
+//           openMobile
+//         }}>
+//       {props.children}
+//     </WindowWidthContext.Provider>
+//     )
     
-  }
+//   }
 
 function BackToTopState(props) {
     const initialState = { backToTop: false };
@@ -250,71 +250,71 @@ function ContentContainer(props) {
     )
 }
 
-// function NavBar({ transitions }) {
+function NavBar({ transitions }) {
 
-//     return (
-//         <div className={`navbar ${transitions}`}>
-//             <span class="navbar-logo">&#60; &#47;&#62;</span>
-//             <ul>
-//                 <li><a href="#contact">Contact</a></li>
-//                 <li><a href="#about">About</a></li>
-//                 <li><a href="#education">Education</a></li>
-//                 <li><a href="#projects">Projects</a></li>
-//                 <li><a href="#experience">Experience</a></li>
-//             </ul>
-//         </div>
-//     )
-
-// }
-
-function NavBar ({transitions, isMobile, openMobile, isMobileOpen}){
-  
-    if(isMobile && isMobile !== "init"){
-      return (
-       <>
-          <div onClick={() => openMobile(!isMobileOpen)} className="menu-icon">
-           {!isMobileOpen && iconSelector("menu")}
-           {isMobileOpen && iconSelector("close")}
-          </div>
-        
-        {isMobileOpen && (
-         <div className="mobile-menu" onClick={() => openMobile(!isMobileOpen)} >
-          <span className="mobile-menu"> &#60; &#47; &#62;</span>
-          <ul>
-            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#contact">Contact</a></li>
-            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#about">About</a></li>
-            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#education">Education</a></li>
-            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#projects">Projects</a></li>
-            <li onClick={() => openMobile(!isMobileOpen)} ><a href="#experience">Experience</a></li>
-          </ul>
-            
+    return (
+        <div className={`navbar ${transitions}`}>
+            <span class="navbar-logo">&#60; &#47;&#62;</span>
+            <ul>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+            </ul>
         </div>
-          )}
-       </>
-      )
-    }
-    if(!isMobile && isMobile !== "init"){
-      return (
-      <div className={`navbar ${transitions}`}>
-        <span class="navbar-logo">&#60; &#47;&#62;</span>
-        <ul>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#experience">Experience</a></li>
-        </ul>
-      </div>
-      )
-    }
-   //this is necessary in order to avoid pre state assignment UI blink
-   if(isMobile === "init"){
-     return(
-     <>
-     </>
-     )
-   }
-  }
+    )
+
+}
+
+// function NavBar ({transitions, isMobile, openMobile, isMobileOpen}){
+  
+//     if(isMobile && isMobile !== "init"){
+//       return (
+//        <>
+//           <div onClick={() => openMobile(!isMobileOpen)} className="menu-icon">
+//            {!isMobileOpen && iconSelector("menu")}
+//            {isMobileOpen && iconSelector("close")}
+//           </div>
+        
+//         {isMobileOpen && (
+//          <div className="mobile-menu" onClick={() => openMobile(!isMobileOpen)} >
+//           <span className="mobile-menu"> &#60; &#47; &#62;</span>
+//           <ul>
+//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#contact">Contact</a></li>
+//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#about">About</a></li>
+//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#education">Education</a></li>
+//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#projects">Projects</a></li>
+//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#experience">Experience</a></li>
+//           </ul>
+            
+//         </div>
+//           )}
+//        </>
+//       )
+//     }
+//     if(!isMobile && isMobile !== "init"){
+//       return (
+//       <div className={`navbar ${transitions}`}>
+//         <span class="navbar-logo">&#60; &#47;&#62;</span>
+//         <ul>
+//           <li><a href="#contact">Contact</a></li>
+//           <li><a href="#about">About</a></li>
+//           <li><a href="#education">Education</a></li>
+//           <li><a href="#projects">Projects</a></li>
+//           <li><a href="#experience">Experience</a></li>
+//         </ul>
+//       </div>
+//       )
+//     }
+//    //this is necessary in order to avoid pre state assignment UI blink
+//    if(isMobile === "init"){
+//      return(
+//      <>
+//      </>
+//      )
+//    }
+//   }
 
 
 function Card({ name, text, image, url, tech }) {
@@ -482,8 +482,8 @@ function Footer() {
 //////////Layout mounter//////////
 function Site(props) {
     const backToTopContext = useContext(BackToTopContext);
-    const windowWidthContext = useContext(WindowWidthContext);
-    const {openMobile} = windowWidthContext;
+    // const windowWidthContext = useContext(WindowWidthContext);
+    // const {openMobile} = windowWidthContext;
 
     return (
         <>
@@ -491,22 +491,32 @@ function Site(props) {
                 {state => (<ArrowUp transitions={`arrow-${state}`} />)}
             </Transition>
             <Transition in={backToTopContext.state.backToTop} timeout={200}>
-                {state => (<NavBar transitions={`navbar-${state}`} 
-                isMobile={windowWidthContext.state.isMobile} openMobile={openMobile} isMobileOpen={windowWidthContext.state.openMobile}/>)}
+                {state => (<NavBar transitions={`navbar-${state}`} />)}
             </Transition>
             <Social />
             <Header />
             <Exp />
-            <ViewportExp />
             <Projects />
-            <ViewportProjects />
             <Education />
-            <ViewportEducation />
             <About />
-            <ViewportAbout />
-            <ViewportContact />
             <ContactArea />
-            <ContentContainer />
+            <ContentContainer>
+                <ViewportExp />
+                <Exp />
+                <ViewportProjects />
+                <Projects />
+                <ViewportEducation />
+                <Education />
+                <ViewportAbout />
+                <About />
+                <ContactArea />
+            </ContentContainer>
+            <ContentContainer>
+                <ViewportExp />
+                <ViewportProjects />
+                <ViewportEducation />
+                <ViewportAbout />
+            </ContentContainer>
             <Footer />
         </>
     )
@@ -516,11 +526,7 @@ function Site(props) {
 function App() {
     return (
         <BackToTopState>
-            {/* <SendContactFormState> */}
-            <WindowWidthState>
             <Site />
-            </WindowWidthState>  
-            {/* </SendContactFormState>  */}
         </BackToTopState>
     )
 }
