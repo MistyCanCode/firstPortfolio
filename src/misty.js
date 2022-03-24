@@ -250,11 +250,11 @@ function ContentContainer(props) {
     )
 }
 
-function NavBar({ transitions }) {
+function NavBar() {
 
     return (
-        <div className={`navbar ${transitions}`}>
-            <span class="navbar-logo">&#60; &#47;&#62;</span>
+        <div className="navbar">
+            <span className="navbar-logo">&#60; &#47;&#62;</span>
             <ul>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#about">About</a></li>
@@ -266,56 +266,6 @@ function NavBar({ transitions }) {
     )
 
 }
-
-// function NavBar ({transitions, isMobile, openMobile, isMobileOpen}){
-  
-//     if(isMobile && isMobile !== "init"){
-//       return (
-//        <>
-//           <div onClick={() => openMobile(!isMobileOpen)} className="menu-icon">
-//            {!isMobileOpen && iconSelector("menu")}
-//            {isMobileOpen && iconSelector("close")}
-//           </div>
-        
-//         {isMobileOpen && (
-//          <div className="mobile-menu" onClick={() => openMobile(!isMobileOpen)} >
-//           <span className="mobile-menu"> &#60; &#47; &#62;</span>
-//           <ul>
-//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#contact">Contact</a></li>
-//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#about">About</a></li>
-//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#education">Education</a></li>
-//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#projects">Projects</a></li>
-//             <li onClick={() => openMobile(!isMobileOpen)} ><a href="#experience">Experience</a></li>
-//           </ul>
-            
-//         </div>
-//           )}
-//        </>
-//       )
-//     }
-//     if(!isMobile && isMobile !== "init"){
-//       return (
-//       <div className={`navbar ${transitions}`}>
-//         <span class="navbar-logo">&#60; &#47;&#62;</span>
-//         <ul>
-//           <li><a href="#contact">Contact</a></li>
-//           <li><a href="#about">About</a></li>
-//           <li><a href="#education">Education</a></li>
-//           <li><a href="#projects">Projects</a></li>
-//           <li><a href="#experience">Experience</a></li>
-//         </ul>
-//       </div>
-//       )
-//     }
-//    //this is necessary in order to avoid pre state assignment UI blink
-//    if(isMobile === "init"){
-//      return(
-//      <>
-//      </>
-//      )
-//    }
-//   }
-
 
 function Card({ name, text, image, url, tech }) {
     return (
@@ -421,29 +371,6 @@ const ViewportAbout = handleViewport(About);
 
 function ContactArea(props) {
     const { inViewport, enterCount, innerRef } = props
-//     this.state = { name: "", email: "", message: ""};
-  
-//     const encode = (data) => {
-//         return Object.keys(data)
-//             .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-//             .join("&");
-//       }
-
-//   const handleSubmit = (e) => {
-//     fetch("/", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//         body: encode({ "form-name": "contact", ...this.state })
-//       })
-//         .then(() => alert("Success!"))
-//         .catch(error => alert(error));
-//     e.preventDefault()
-//     };
-//      const handleChange = e => {
-//          return this.setState({ [e.target.name]: e.target.value });
-//      };
-//        const {name, email, msg} = this.state;
-    
 
     return (
         <div id="contact" className="section-default" style={getStyle(inViewport, enterCount)} ref={innerRef}>
@@ -481,18 +408,20 @@ function Footer() {
 
 //////////Layout mounter//////////
 function Site(props) {
-    const backToTopContext = useContext(BackToTopContext);
+    // const backToTopContext = useContext(BackToTopContext);
     // const windowWidthContext = useContext(WindowWidthContext);
     // const {openMobile} = windowWidthContext;
 
     return (
         <>
-            <Transition in={backToTopContext.state.backToTop} timeout={300}>
+            {/* <Transition in={backToTopContext.state.backToTop} timeout={300}>
                 {state => (<ArrowUp transitions={`arrow-${state}`} />)}
             </Transition>
             <Transition in={backToTopContext.state.backToTop} timeout={200}>
                 {state => (<NavBar transitions={`navbar-${state}`} />)}
-            </Transition>
+            </Transition> */}
+            <ArrowUp/>
+            <NavBar/>
             <Social />
             <Header />
             <Exp />
