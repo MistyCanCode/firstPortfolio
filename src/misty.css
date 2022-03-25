@@ -265,7 +265,7 @@ html::-webkit-scrollbar-thumb {
   width: 25rem;
   background-position: center;
   background-size: cover;
-  background-image: url(logo.png);
+  background-image: url(https://lh3.googleusercontent.com/r84MFEh28SROdEAm4EHsf9sCJwllLeVbOUBvy4-lOwpii0MBD-00ZWCd6iq8g9ReUtl4CZd6r3vTPYjdSi9uYQVDkjI-ikTff9tdDoKZ0cDpBdoi0P_Yklre1KtVQBcABYQGM9E0pp73xLdie3xSt-RMnCqFBb6-yDfPyq7Q29Im6CalsV5Y4stxSF07I8-wzjRI15Ho_gTJBESXxnoSuPNcjrksMbSsDMK1UVMdGfoEMQYLgqNmhrjZW0YGT2asSS3poJ_D1YixLgiSRkmOgKYmhc5rXeuA8Qpix7ef3pDzkIk6EBjsqXCmhpuL5EMSihpzGIdx8eF75iVE3H8nguhsaTnyUHULqsshHSxJqiDF3ApIh4pOR78ZzcFndsRNtj_0600V_m1g0FgD2yjRxRFCorYOTXqD5gpp5Ru_0n0k4a_1k1Dy_1fbZ9M87rEoxmYrEr7vgo3vrOf_9zXQ-SYHmkq29ajyuyiMhMCSIe-44yN1xCsQJmsvdF8djwwiHjd-0ENRA0AlcTYCtQQCKPL4ougxzBLNd9_JXWL6vuNSiO8v1s_Gb805-lbjqHsp8ll-936N_ocvs6c7XEH4imkFw-tjLPKr39DnkQ5GH0fdzCBUgofk3_kMchrbBnLqJMxy9hGactOvPFzlPIY_Jt3RGatG5oIpgS32wBN86n7kAob_IF4kOpMZrBPcthBUdY4QXpfQKxLG8PCSKYs1wGTK=w893-h1192-no?authuser=0);
 }
 
 .header-photo-outline {
@@ -855,5 +855,23 @@ html::-webkit-scrollbar-thumb {
 .mobile-menu span:hover {
   cursor: pointer;
 }
-
+.footer{
+  background-color: rgba(75, 25, 125, 1);
+  text-align: center;
+  color: #ffffff;
+  padding: 5rem;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+.footer-photo{
+  animation: fadeIn .8s, scaleCenter .8s;
+  border: 1px solid black;
+  margin: auto;
+  width: 50%;
+  height: 30vh;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-image: url(https://github.com/MistyCanCode/firstPortfolio/blob/main/public/logo-transparent.png?raw=true);
+}
 /*# sourceMappingURL=misty.css.map */
