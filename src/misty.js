@@ -1,11 +1,10 @@
 import handleViewport from 'react-in-viewport';
-import React from 'react'
-// import ReactDOM from 'react-dom'
-import { useEffect, useReducer, createContext } from 'react'
-import { SiPostgresql, SiJquery } from 'react-icons/si'
+import React from 'react';
+import { useEffect, useContext, useReducer, createContext } from 'react';
+import { SiPostgresql, SiJquery } from 'react-icons/si';
 import { FaLinkedin, FaUserGraduate, FaJava, FaHtml5, FaGithub, FaRobot, FaGithubSquare, FaGraduationCap } from "react-icons/fa";
 import { IoCloseSharp, IoMenu, IoLogoJavascript, IoLogoChrome, IoLogoReact, IoLogoCodepen } from "react-icons/io5";
-
+import Transition from 'react-transition-group/Transition';
 
 ///////Data///////
 const clients = [
@@ -189,7 +188,7 @@ function BackToTopState(props) {
     }
     useEffect(() => {
         checkScroll()
-    })
+    }, [state.backToTop])
  
 
     return (
@@ -228,11 +227,11 @@ function Social() {
     )
 }
 
-function ArrowUp() {
+function ArrowUp({transitions}) {
     return (
         <a href="#top">
-            <div className="arrow-entered">
-                <span className="icon">
+            <div className={transitions}>
+                <span class="icon">
                     <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                         <path d="M256,200l-199,199a15,15 0 01-19,0l-29-29a15,15 0 01 0-19l235-236a16,16 0 01 24,0l235,236a15,15 0 01 0,19l-29,29a15,15 0 01-19,0z" />
                     </svg>
@@ -250,10 +249,10 @@ function ContentContainer(props) {
     )
 }
 
-function NavBar() {
+function NavBar({transitions}) {
 
     return (
-        <div className="navbar">
+        <div className={`navbar ${transitions}`}>
             <span className="navbar-logo">&#60; &#47;&#62;</span>
             <ul>
                 <li><a href="#contact">Contact</a></li>
@@ -314,7 +313,6 @@ function Projects({ inViewport, enterCount, innerRef }) {
                     return <Card key={index} {...client} />
                 })}
             </div>
-            <div className='cover-bar'></div>
         </div>
     )
 }
@@ -409,20 +407,18 @@ function Footer() {
 
 //////////Layout mounter//////////
 function Site(props) {
-    // const backToTopContext = useContext(BackToTopContext);
+    const backToTopContext = useContext(BackToTopContext);
     // const windowWidthContext = useContext(WindowWidthContext);
     // const {openMobile} = windowWidthContext;
 
     return (
         <>
-            {/* <Transition in={backToTopContext.state.backToTop} timeout={300}>
+            <Transition in={backToTopContext.state.backToTop} timeout={300}>
                 {state => (<ArrowUp transitions={`arrow-${state}`} />)}
             </Transition>
             <Transition in={backToTopContext.state.backToTop} timeout={200}>
                 {state => (<NavBar transitions={`navbar-${state}`} />)}
-            </Transition> */}
-            <ArrowUp/>
-            <NavBar/>
+            </Transition>
             <Social />
             <Header />
             <Exp />
@@ -439,7 +435,6 @@ function Site(props) {
                 <Education />
                 <ViewportAbout />
                 <About />
-                <ViewportContact />
                 <ContactArea />
             </ContentContainer>
             <ContentContainer>
